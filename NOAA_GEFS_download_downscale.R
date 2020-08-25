@@ -6,9 +6,9 @@ library(tidyverse)
 #source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
 #output_directory <- "/Users/quinn/Downloads/GEFS_test"
 
-source("/root/noaa/write_noaa_gefs_netcdf.R")
-source("/root/noaa/temporal_downscaling.R")
-output_directory <- "/root/noaa/"
+source("/noaa/write_noaa_gefs_netcdf.R")
+source("/noaa/temporal_downscaling.R")
+output_directory <- "/data"
 
 
 site_list <- "fcre"
