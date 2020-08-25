@@ -12,14 +12,14 @@ output_directory <- "/data"
 
 
 
-neon_sites <- read_csv("https://www.neonscience.org/science-design/field-sites/export",)
+neon_sites <- read_csv("https://raw.githubusercontent.com/eco4cast/NOAA_GEFS_container/master/noaa_download_site_list.csv")
 #site_list <- "fcre"
 model_name <- "NOAAGEFS"
 model_name_ds <-"NOAAGEFStimeds"
 
-site_list <- neon_sites$`Site ID`
-lat.in <- neon_sites$Latitude
-lon.in <- neon_sites$Longitude
+site_list <- neon_sites$site_id
+lat.in <- neon_sites$latitude
+lon.in <- neon_sites$longitude
 overwrite <- TRUE
 verbose <- FALSE
 #####
