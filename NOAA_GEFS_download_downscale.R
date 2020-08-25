@@ -11,12 +11,15 @@ source("/noaa/temporal_downscaling.R")
 output_directory <- "/data"
 
 
-site_list <- "fcre"
+
+neon_sites <- read_csv("https://www.neonscience.org/science-design/field-sites/export",)
+#site_list <- "fcre"
 model_name <- "NOAAGEFS"
 model_name_ds <-"NOAAGEFStimeds"
 
-lat.in <- 37.27
-lon.in <- -79.9
+site_list <- neon_sites$`Site ID`
+lat.in <- neon_sites$Latitude
+lon.in <- neon_sites$Longitude
 overwrite <- TRUE
 verbose <- FALSE
 #####
@@ -28,6 +31,8 @@ lat.dom <- seq(-90, 90, by = 1) #domain of latitudes in model
 model_dir <- file.path(output_directory,model_name)
 
 for(site_index in 1:length(site_list)){
+  
+  print()
   
   if(lon.in < 0){
     lon <- which.min(abs(lon.dom  - (360 + lon.in[site_index]))) - 1 #NOMADS indexes start at 0
