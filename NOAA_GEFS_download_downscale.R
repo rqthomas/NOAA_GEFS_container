@@ -2,13 +2,13 @@
 
 library(rNOMADS)
 library(tidyverse)
-source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/write_noaa_gefs_netcdf.R")
-source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
-output_directory <- "/Users/quinn/Downloads/GEFS_test"
+#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/write_noaa_gefs_netcdf.R")
+#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
+#output_directory <- "/Users/quinn/Downloads/GEFS_test"
 
-#source("/noaa/write_noaa_gefs_netcdf.R")
-#source("/noaa/temporal_downscaling.R")
-#output_directory <- "/data"
+source("/noaa/write_noaa_gefs_netcdf.R")
+source("/noaa/temporal_downscaling.R")
+output_directory <- "/data"
 
 
 
