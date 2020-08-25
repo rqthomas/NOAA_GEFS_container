@@ -8,7 +8,7 @@ RUN apt-get -yq update && \
 	libcurl4-openssl-dev \
 	libssl-dev \
 	netcdf-* \
-	udunits \
+	libudunits2-dev \
 	libnetcdf-dev \
 	ssh && \
 	R -e "install.packages(c('rNOMADS', 'RCurl', 'stringr', 'yaml','ncdf4', 'humidity', 'udunits2'))" && \
