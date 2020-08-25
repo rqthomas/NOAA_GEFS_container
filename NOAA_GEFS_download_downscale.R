@@ -2,10 +2,14 @@
 
 library(rNOMADS)
 library(tidyverse)
-source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/write_noaa_gefs_netcdf.R")
-source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
+#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/write_noaa_gefs_netcdf.R")
+#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
+#output_directory <- "/Users/quinn/Downloads/GEFS_test"
 
-output_directory = "/Users/quinn/Downloads/GEFS_test"
+source("/root/noaa/write_noaa_gefs_netcdf.R")
+source("/root/noaa/temporal_downscaling.R")
+output_directory <- "/root/noaa/"
+
 
 site_list <- "fcre"
 model_name <- "NOAAGEFS"
@@ -60,7 +64,7 @@ for(site_index in 1:length(site_list)){
                           format(end_time, "%Y-%m-%dT%H"), sep="_")
       
       #Check if already downloaded
-      if(length(list.files(outfolder)) != 21){
+      if(length(list.files(model_site_date_hour_dir)) != 21){
         
         model.runs <- rNOMADS::GetDODSModelRuns(model.url)
         #check if avialable at NOAA

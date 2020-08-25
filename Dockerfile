@@ -7,10 +7,11 @@ RUN apt-get -yq update && \
 	libxml2-dev \
 	libcurl4-openssl-dev \
 	libssl-dev \
-	netcdf-*\
-	libnetcdf-dev\
+	netcdf-* \
+	udunits \
+	libnetcdf-dev \
 	ssh && \
-	R -e "install.packages(c('rNOMADS', 'RCurl', 'stringr', 'yaml','ncdf4', 'humidity'))" && \
+	R -e "install.packages(c('rNOMADS', 'RCurl', 'stringr', 'yaml','ncdf4', 'humidity', 'udunits2'))" && \
 	wget -O /usr/bin/yq https://github.com/mikefarah/yq/releases/download/3.2.1/yq_linux_amd64 
 	
 RUN mkdir /noaa 
