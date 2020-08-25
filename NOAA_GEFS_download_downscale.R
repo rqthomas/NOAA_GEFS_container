@@ -2,17 +2,17 @@
 
 library(rNOMADS)
 library(tidyverse)
-#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/write_noaa_gefs_netcdf.R")
-#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
-#output_directory <- "/Users/quinn/Downloads/GEFS_test"
+source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/write_noaa_gefs_netcdf.R")
+source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
+output_directory <- "/Users/quinn/Downloads/GEFS_test"
 
-source("/noaa/write_noaa_gefs_netcdf.R")
-source("/noaa/temporal_downscaling.R")
-output_directory <- "/data"
+#source("/noaa/write_noaa_gefs_netcdf.R")
+#source("/noaa/temporal_downscaling.R")
+#output_directory <- "/data"
 
 
 
-neon_sites <- read_csv("https://raw.githubusercontent.com/eco4cast/NOAA_GEFS_container/master/noaa_download_site_list.csv")
+neon_sites <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/NOAA_GEFS_container/master/noaa_download_site_list.csv", col_types = cols())
 #site_list <- "fcre"
 model_name <- "NOAAGEFS"
 model_name_ds <-"NOAAGEFStimeds"
@@ -32,9 +32,7 @@ model_dir <- file.path(output_directory,model_name)
 
 for(site_index in 1:length(site_list)){
   
-  print()
-  
-  if(lon.in < 0){
+  if(lon.in[site_index] < 0){
     lon <- which.min(abs(lon.dom  - (360 + lon.in[site_index]))) - 1 #NOMADS indexes start at 0
   }else{
     lon <- which.min(abs(lon.dom  - (lon.in[site_index]))) - 1 #NOMADS indexes start at 0
@@ -70,6 +68,8 @@ for(site_index in 1:length(site_list)){
       
       #Check if already downloaded
       if(length(list.files(model_site_date_hour_dir)) != 21){
+        
+        print(paste("Downloading", site_list[site_index], format(start_time, "%Y-%m-%dT%H")))
         
         model.runs <- rNOMADS::GetDODSModelRuns(model.url)
         #check if avialable at NOAA
@@ -129,8 +129,6 @@ for(site_index in 1:length(site_list)){
           #NOAA precipitation data is an accumulation over 6 hours.
           forecast_noaa$precipitation_flux <- udunits2::ud.convert(forecast_noaa$precipitation_flux, "kg m-2 hr-1", "kg m-2 6 s-1")  #There are 21600 seconds in 6 hours
           
-          
-          
           for (ens in 1:21) { # i is the ensemble number
             
             if(ens< 10){
@@ -155,10 +153,10 @@ for(site_index in 1:length(site_list)){
             fname_ds <- file.path(modelds_site_date_hour_dir, paste0(identifier_ds,"_ens",ens_name,".nc"))
             
             temporal_downscale(input_file = output_file, output_file = fname_ds, overwrite = TRUE)
-            
-            
           }
         }
+      }else{
+        print(paste("Existing", site_list[site_index], start_time))
       }
     }
   }
