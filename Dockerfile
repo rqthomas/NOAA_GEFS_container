@@ -1,5 +1,10 @@
 FROM rocker/tidyverse
 
+COPY entrypoint.sh /entrypoint.sh
+
+# Code file to execute when the docker container starts up (`entrypoint.sh`)
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Install Dependencies
 RUN apt-get -yq update && \
 	apt-get -yqq install wget \
@@ -12,6 +17,9 @@ RUN apt-get -yq update && \
 	ssh && \
 	R -e "install.packages(c('rNOMADS', 'RCurl', 'stringr', 'yaml','ncdf4', 'humidity'))" && \
 	wget -O /usr/bin/yq https://github.com/mikefarah/yq/releases/download/3.2.1/yq_linux_amd64 
+
+#create directory where output directory will be created	
+RUN mkdir /root/noaa/output &&
 
 # Get flare-container.sh
 RUN mkdir /root/noaa && \
