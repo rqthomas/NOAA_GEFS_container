@@ -21,7 +21,7 @@ COPY write_noaa_gefs_netcdf.R /noaa/write_noaa_gefs_netcdf.R
 COPY rNOMADS_2.5.0.tar.gz /noaa/rNOMADS_2.5.0.tar.gz
 \
 # Get flare-container.sh
-RUN R -e "install.packages("/noaa/rNOMADS_2.5.0.tar.gz", repos = NULL, type="source")" 
+RUN R -e "install.packages('/noaa/rNOMADS_2.5.0.tar.gz', repos = NULL, type='source')" 
 	
 #create directory where output directory will be created	
 RUN mkdir /data
