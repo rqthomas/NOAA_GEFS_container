@@ -21,9 +21,15 @@ model_name_ds <-"NOAAGEFStimeds"
 site_list <- neon_sites$site_id
 lat.in <- neon_sites$latitude
 lon.in <- neon_sites$longitude
-overwrite <- config_file$run_parallel
+overwrite <- config_file$overwrite
 
 run_parallel <- config_file$run_parallel
+
+print(paste0("Site file: ", config_file$site_file))
+
+print(paste0("Running in parallel: ", config_file$run_parallel))
+
+print(paste0("Overwrite existing files: ", config_file$run_parallel))
 
 #####
 
