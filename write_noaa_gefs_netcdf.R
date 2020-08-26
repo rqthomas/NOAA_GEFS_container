@@ -43,7 +43,7 @@ for (i in 1:length(cf_var_names)) { #Each ensemble member will have data on each
   }
   
   if (!file.exists(output_file) | overwrite) {
-    nc_flptr <- ncdf4::nc_create(output_file, nc_var_list, verbose=verbose)
+    nc_flptr <- ncdf4::nc_create(output_file, nc_var_list, verbose = FALSE)
     
     #For each variable associated with that ensemble
     for (j in 1:ncol(data)) {

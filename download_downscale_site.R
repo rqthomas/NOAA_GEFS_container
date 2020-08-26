@@ -1,36 +1,10 @@
-
-
-library(rNOMADS)
-library(tidyverse)
-#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/write_noaa_gefs_netcdf.R")
-#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/temporal_downscaling.R")
-#output_directory <- "/Users/quinn/Downloads/GEFS_test"
-
-source("/noaa/write_noaa_gefs_netcdf.R")
-source("/noaa/temporal_downscaling.R")
-output_directory <- "/data"
-
-
-
-neon_sites <- readr::read_csv("https://raw.githubusercontent.com/eco4cast/NOAA_GEFS_container/master/noaa_download_site_list.csv", col_types = cols())
-#site_list <- "fcre"
-model_name <- "NOAAGEFS"
-model_name_ds <-"NOAAGEFStimeds"
-
-site_list <- neon_sites$site_id
-lat.in <- neon_sites$latitude
-lon.in <- neon_sites$longitude
-overwrite <- TRUE
-verbose <- FALSE
-#####
-
-time <- c(0, 64) #6 hour prediction for 16 days
-lon.dom <- seq(0, 360, by = 1) #domain of longitudes in model
-lat.dom <- seq(-90, 90, by = 1) #domain of latitudes in model
-
-model_dir <- file.path(output_directory,model_name)
-
-for(site_index in 1:length(site_list)){
+download_downscale_site <- function(site_index,lat.in,lon.in,overwrite,model_name,model_name_ds, output_directory){
+  
+  model_dir <- file.path(output_directory,model_name)
+  
+  time <- c(0, 64) #6 hour prediction for 16 days
+  lon.dom <- seq(0, 360, by = 1) #domain of longitudes in model
+  lat.dom <- seq(-90, 90, by = 1) #domain of latitudes in model
   
   if(lon.in[site_index] < 0){
     lon <- which.min(abs(lon.dom  - (360 + lon.in[site_index]))) - 1 #NOMADS indexes start at 0
@@ -53,7 +27,7 @@ for(site_index in 1:length(site_list)){
     
     for(m in 1:length(model_list)){
       
-      run_hour <- str_sub(model_list[m], start = 9, end = 10)
+      run_hour <- stringr::str_sub(model_list[m], start = 9, end = 10)
       start_time <- lubridate::as_datetime(start_date) + lubridate::hours(as.numeric(run_hour))
       end_time <- start_time + lubridate::days(16)
       
@@ -123,7 +97,7 @@ for(site_index in 1:length(site_list)){
           
           forecast_noaa$wind_speed <- sqrt(forecast_noaa$eastward_wind^2 + forecast_noaa$northward_wind^2)
           
-          forecast_noaa <- forecast_noaa %>% select(-c("eastward_wind","northward_wind"))
+          forecast_noaa <- forecast_noaa %>% dplyr::select(-c("eastward_wind","northward_wind"))
           
           # Convert NOAA's total precipitation (kg m-2) to precipitation flux (kg m-2 s-1)
           #NOAA precipitation data is an accumulation over 6 hours.
