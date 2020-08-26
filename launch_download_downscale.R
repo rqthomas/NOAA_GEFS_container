@@ -19,12 +19,11 @@ library(tidyverse)
 
 #source files and set paths on container
 #these directories won't change on container
-source("/noaa/write_noaa_gefs_netcdf.R")
-source("/noaa/temporal_downscaling.R")
-source("/noaa/download_downscale_site.R")
-output_directory <- "/data"
-configuration_yaml <- "/noaa_config/noaa_download_scale_config.yml"
-
+source("/noaa/R/write_noaa_gefs_netcdf.R")
+source("/noaa/R/temporal_downscaling.R")
+source("/noaa/R/download_downscale_site.R")
+output_directory <- "/noaa/data"
+configuration_yaml <- "/noaa/config/noaa_download_scale_config.yml"
 
 
 #Set model name

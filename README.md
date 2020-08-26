@@ -9,7 +9,8 @@ To run the container
 - Create a directory where you want the output saved
 
 - Create a directory where you want the configuration files stored and move the following
-  files into the directory
+  files into the directory. Examples of the files can be found in the `example` directory
+  on GitHub
   
   - noaa_download_scale_config.yml
   - noaa_download_site_list.csv
@@ -25,7 +26,7 @@ To run the container
 - Run the following, replacing `DIRECTORY_HOST_SHARED` with the output directory on your 
   machine and `DIRECTORY_HOST_CONFIG` with your configuration directory
 
-	` docker run -v DIRECTORY_HOST_SHARED:/data -v DIRECTORY_HOST_CONFIG:/noaa_config rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
+	` docker run -v DIRECTORY_HOST_SHARED:/noaa/data -v DIRECTORY_HOST_CONFIG:/noaa/config rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
 
 
 
