@@ -1,3 +1,5 @@
 site_file: https://raw.githubusercontent.com/eco4cast/NOAA_GEFS_container/master/noaa_download_site_list.csv
-run_parallel: TRUE
+downscale: TRUE
 overwrite: FALSE
+run_parallel: TRUE
+num_cores: 4
