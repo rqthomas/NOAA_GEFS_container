@@ -6,20 +6,13 @@ To run the container
 
 	`docker pull rqthomas/noaa_gefs_download_downscale:latest`
 
-- Switch to the bash shell
+- Create a directory where you want the output saved
 
-	`bash`
 
-- Set the `DIRECTORY_HOST_SHARED` environment variable in bash
+- Run the following, replacing `DIRECTORY_HOST_SHARED` with the output directory on your 
+  machine
 
-	`DIRECTORY_HOST_SHARED=/Users/quinn/Downloads/GEFS_test`
+	`docker run -v DIRECTORY_HOST_SHARED:/data rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
 
-- Make the script you will run executable
-
-	`chmod +x run_noaa_download_downscale_host.sh`
-
-- Run script
-
-	`./run_noaa_download_downscale_host.sh`
 
 
