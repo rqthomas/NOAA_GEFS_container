@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-Rscript /noaa/NOAA_GEFS_download_downscale.R
+Rscript /noaa/launch_download_downscale.R
 
