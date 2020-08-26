@@ -16,9 +16,10 @@ RUN apt-get -yq update && \
 	
 RUN mkdir /noaa 
 
-COPY NOAA_GEFS_download_downscale.R /noaa/NOAA_GEFS_download_downscale.R
+COPY NOAA_GEFS_download_downscale.R /noaa/launch_download_downscale.R
 COPY temporal_downscaling.R /noaa/temporal_downscaling.R
 COPY write_noaa_gefs_netcdf.R /noaa/write_noaa_gefs_netcdf.R
+COPY write_noaa_gefs_netcdf.R /noaa/download_downscale_site.R
 COPY rNOMADS_2.5.0.tar.gz /noaa/rNOMADS_2.5.0.tar.gz
 COPY run_noaa_download_downscale.sh /run_noaa_download_downscale.sh
 
