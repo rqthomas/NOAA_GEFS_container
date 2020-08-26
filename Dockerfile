@@ -16,7 +16,7 @@ RUN apt-get -yq update && \
 	
 RUN mkdir /noaa 
 
-COPY launch_download_downscale.R/noaa/launch_download_downscale.R
+COPY launch_download_downscale.R /noaa/launch_download_downscale.R
 COPY temporal_downscaling.R /noaa/temporal_downscaling.R
 COPY write_noaa_gefs_netcdf.R /noaa/write_noaa_gefs_netcdf.R
 COPY download_downscale_site.R /noaa/download_downscale_site.R
