@@ -15,6 +15,18 @@ temporal_downscale <- function(input_file, output_file, overwrite = TRUE){
   # open netcdf
   nc <- ncdf4::nc_open(input_file)
   
+  if(stringr::str_detect(input_file, "ens")){
+    ens_postion <- stringr::str_locate(input_file, "ens")
+    ens_name <- stringr::str_sub(input_file, start = ens_postion[1], end = ens_postion[2] + 2)
+    ens <- as.numeric(stringr::str_sub(input_file, start = ens_postion[2] + 1, end = ens_postion[2] + 2))
+    print(ens)
+    print(ens_name)
+    
+  }else{
+    ens <- 1
+    ens_name <- "ens01"
+  }
+  
   # retrive variable names
   cf_var_names <- names(nc$var)
 
@@ -86,15 +98,15 @@ temporal_downscale <- function(input_file, output_file, overwrite = TRUE){
   }
   
   #Add dummy ensemble number to work with write_noaa_gefs_netcdf()
-  forecast_noaa_ds$NOAA.member <- as.numeric(ens_name)
+  forecast_noaa_ds$NOAA.member <- ens
   
   #Make sure var names are in correct order
   forecast_noaa_ds <- forecast_noaa_ds %>% 
-    select("time", all_of(cf_var_names), "NOAA.member") 
+    dplyr::select("time", all_of(cf_var_names), "NOAA.member") 
   
   #Write netCDF
   write_noaa_gefs_netcdf(df = forecast_noaa_ds,
-                         ens = as.numeric(ens_name), 
+                         ens = ens, 
                          lat = lat.in, 
                          lon.in, 
                          cf_units = var_units, 
@@ -284,7 +296,7 @@ downscale_repeat_6hr_to_hrly <- function(df, varName){
   }
   
   #Clean up data frame
-  data.hrly <- data.hrly %>% select("time", lead_var) %>% 
+  data.hrly <- data.hrly %>% dplyr::select("time", lead_var) %>% 
     arrange(time)
   names(data.hrly) <- c("time", varName)
   
