@@ -26,7 +26,7 @@ COPY R/rNOMADS_2.5.0.tar.gz /noaa/R/rNOMADS_2.5.0.tar.gz
 COPY run_noaa_download_downscale.sh /run_noaa_download_downscale.sh
 
 # Get flare-container.sh
-RUN R -e "install.packages('/noaa/rNOMADS_2.5.0.tar.gz', repos = NULL)" 
+RUN R -e "install.packages('/noaa/R/rNOMADS_2.5.0.tar.gz', repos = NULL)" 
 	
 #create directory where output directory will be created	
 RUN mkdir -p /noaa/data

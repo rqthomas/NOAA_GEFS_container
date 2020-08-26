@@ -1,6 +1,6 @@
 ## NOAA GEFS downloading and temporally (6 hr to 1 hr) downscaling container
 
-###To run the container
+### To run the container
 
 - Pull the container from DockerHub
 
@@ -28,41 +28,34 @@
 
 	`docker run -v DIRECTORY_HOST_SHARED:/noaa/data -v DIRECTORY_HOST_CONFIG:/noaa/config rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
 
-### To run R code without 
+### To run in R (not using container)
 
+Some set up since it isn't a package yet
 
-`library(tidyverse)
+`library(tidyverse)`
+`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/write_noaa_gefs_netcdf.R")`
+`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/temporal_downscaling.R")`
+`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/download_downscale_site.R")`
+`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/noaa_gefs_download_downscale.R")`
 
-#Use these for using code on local machine
-source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/write_noaa_gefs_netcdf.R")
-source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/temporal_downscaling.R")
-source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/download_downscale_site.R")
-source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/noaa_gefs_download_downscale.R")
-output_directory <- "/Users/quinn/Downloads/GEFS_test"
+Set output directory
+ 
+`output_directory <- "/Users/quinn/Downloads/GEFS_test"`
 
+Read list of latitude and longitudes
 
-#Read list of latitude and longitudes
-neon_sites <- readr::read_csv(site_file, col_types = cols())
-site_list <- neon_sites$site_id
-lat_list <- neon_sites$latitude
-lon_list <- neon_sites$longitude
+`sites <- readr::read_csv(site_file, col_types = cols())`
 
-overwrite <- config_file$overwrite
+Download and temporally downscale forecasts
 
-run_parallel <- config_file$run_parallel
-
-num_cores <- config_file$num_cores
-
-downscale <- config_file$downscale
-
-noaa_gefs_download_downscale(site_list,
-                             lat_list,
-                             lon_list,
+`noaa_gefs_download_downscale(site_list = sites$site_id,
+                             lat_list = sites$latitude,
+                             lon_list = sites$longitude,
                              output_directory,
-                             downscale,
-                             run_parallel = run_parallel,
-                             num_cores = num_cores, 
-                             overwrite = FALSE)`
+                             downscale = TRUE,
+                             run_parallel = TRUE,
+                             num_cores = 4, 
+                             overwrite = config_file$overwrite)`
 
 
 
