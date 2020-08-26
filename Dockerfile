@@ -21,6 +21,7 @@ COPY launch_download_downscale.R /noaa/launch_download_downscale.R
 COPY R/temporal_downscaling.R /noaa/R/temporal_downscaling.R
 COPY R/write_noaa_gefs_netcdf.R /noaa/R/write_noaa_gefs_netcdf.R
 COPY R/download_downscale_site.R /noaa/R/download_downscale_site.R
+COPY R/noaa_gefs_download_downscale.R /noaa/R/noaa_gefs_download_downscale.R
 COPY R/rNOMADS_2.5.0.tar.gz /noaa/R/rNOMADS_2.5.0.tar.gz
 COPY run_noaa_download_downscale.sh /run_noaa_download_downscale.sh
 

@@ -5,6 +5,7 @@
 ##' @param lat_list, vector of latitudes that correspond to site codes
 ##' @param lon_list, vector of longitudes that correspond to site codes
 ##' @param site_list, vector of site codes, used in directory and file name generation
+##' @param downscale, logical specifying whether to downscale from 6-hr to 1-hr
 ##' @param overwrite, logical stating to overwrite any existing output_file
 ##' @param model_name, directory name for the 6-hr forecast, this will be used in directory and file name generation
 ##' @param model_name_ds, directory name for the 1-hr forecast, this will be used in directory and file name generation
@@ -20,6 +21,7 @@ download_downscale_site <- function(site_index,
                                     lat_list, 
                                     lon_list, 
                                     site_list,
+                                    downscale,
                                     overwrite, 
                                     model_name, 
                                     model_name_ds, 
@@ -102,7 +104,7 @@ download_downscale_site <- function(site_index,
             
             noaa_data[[j]] <- rNOMADS::DODSGrab(model.url = model.url, 
                                                 model.run = model.run, 
-                                                noaa_var_names[j] = noaa_var_names[j], 
+                                                variables	= noaa_var_names[j], 
                                                 time = c(0, 64), 
                                                 lon = lon, 
                                                 lat = lat,
@@ -160,6 +162,7 @@ download_downscale_site <- function(site_index,
             #Write netCDF
             write_noaa_gefs_netcdf(df = forecast_noaa,ens, lat = lat_list[site_index], lon_list[site_index], cf_units = cf_var_units1, output_file = output_file, overwrite = overwrite)
             
+            if(downscale){
             #Downscale the forecast from 6hr to 1hr
             modelds_site_date_hour_dir <- file.path(output_directory,model_name_ds,site_list[site_index],start_date,run_hour)
             
@@ -173,6 +176,7 @@ download_downscale_site <- function(site_index,
             
             #Run downscaling
             temporal_downscale(input_file = output_file, output_file = fname_ds, overwrite = overwrite)
+            }
           }
         }
       }else{
