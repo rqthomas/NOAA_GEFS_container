@@ -1,9 +1,9 @@
 library(rNOMADS)
 library(tidyverse)
 
-#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/write_noaa_gefs_netcdf.R")
-#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/temporal_downscaling.R")
-#source("/Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/download_downscale_site.R")
+#source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/write_noaa_gefs_netcdf.R")
+#source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/temporal_downscaling.R")
+#source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/download_downscale_site.R")
 #output_directory <- "/Users/quinn/Downloads/GEFS_test"
 #configuration_yaml <- "/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/noaa_config/Downloads/GEFS_test"
 
