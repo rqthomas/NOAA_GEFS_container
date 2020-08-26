@@ -1,4 +1,3 @@
-
 library(rNOMADS)
 library(tidyverse)
 
@@ -28,11 +27,6 @@ run_parallel <- config_file$run_parallel
 print(paste0("Site file: ", config_file$site_file))
 print(paste0("Overwrite existing files: ", config_file$overwrite))
 print(paste0("Running in parallel: ", config_file$run_parallel))
-
-if(config_file$run_parallel) print(paste0("Number of cores: ", config_file$numCores))
-
-
-
 #####
 
 if(run_parallel){
@@ -40,7 +34,7 @@ if(run_parallel){
   numCores <- config_file$numCores
   if(numCores > parallel::detectCores()){
     numCores <- parallel::detectCores()
-
+    
   }
   print(paste0("Number of cores specified: ", config_file$numCores))
   print(paste0("Number of cores allocated: ", numCores))
@@ -69,8 +63,8 @@ if(run_parallel){
                             model_name = model_name,
                             model_name_ds = model_name_ds,
                             output_directory = output_directory)
-  
-    }
+    
+  }
   
 }
 
