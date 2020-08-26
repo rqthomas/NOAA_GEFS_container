@@ -29,7 +29,9 @@ print(paste0("Site file: ", config_file$site_file))
 
 print(paste0("Running in parallel: ", config_file$run_parallel))
 
-print(paste0("Overwrite existing files: ", config_file$run_parallel))
+if(config_file$run_parallel) print(paste0("Number of cores: ", config_file$numCores))
+
+print(paste0("Overwrite existing files: ", config_file$overwrite))
 
 #####
 
