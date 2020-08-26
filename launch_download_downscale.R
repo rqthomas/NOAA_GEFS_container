@@ -14,7 +14,7 @@ library(tidyverse)
 source("/noaa/R/write_noaa_gefs_netcdf.R")
 source("/noaa/R/temporal_downscaling.R")
 source("/noaa/R/download_downscale_site.R")
-source("/noaa/R/noaa_gefs_download_scale.R")
+source("/noaa/R/noaa_gefs_download_downscale.R")
 
 output_directory <- "/noaa/data"
 configuration_yaml <- "/noaa/config/noaa_download_scale_config.yml"
