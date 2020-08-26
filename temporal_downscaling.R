@@ -19,12 +19,9 @@ temporal_downscale <- function(input_file, output_file, overwrite = TRUE){
     ens_postion <- stringr::str_locate(input_file, "ens")
     ens_name <- stringr::str_sub(input_file, start = ens_postion[1], end = ens_postion[2] + 2)
     ens <- as.numeric(stringr::str_sub(input_file, start = ens_postion[2] + 1, end = ens_postion[2] + 2))
-    print(ens)
-    print(ens_name)
-    
   }else{
-    ens <- 1
-    ens_name <- "ens01"
+    ens <- 0
+    ens_name <- "ens00"
   }
   
   # retrive variable names

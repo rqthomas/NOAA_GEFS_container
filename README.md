@@ -8,11 +8,24 @@ To run the container
 
 - Create a directory where you want the output saved
 
+- Create a directory where you want the configuration files stored and move the following
+  files into the directory
+  
+  - noaa_download_scale_config.yml
+  - noaa_download_site_list.csv
+  
+- Edit the noaa_download_scale_config.yml
+
+  - `site_file:` is the file name in your configuration directory (i.e., noaa_download_site_list.csv)
+     or the web address of a file (i.e., `https://raw.githubusercontent.com/rqthomas/NOAA_GEFS_container/master/noaa_download_site_list.csv`)
+  - `run_parallel:` TRUE = download and process using multiple cores; FALSE = use single core
+  - `numCores:` If `run_parallel`  is TRUE , specify number of cores to use
+  - `overwrite:` TRUE = overwrite existing files, FALSE = don't overwrite
 
 - Run the following, replacing `DIRECTORY_HOST_SHARED` with the output directory on your 
-  machine
+  machine and `DIRECTORY_HOST_CONFIG` with your configuration directory
 
-	`docker run -v DIRECTORY_HOST_SHARED:/data rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
+	` docker run -v DIRECTORY_HOST_SHARED:/data -v DIRECTORY_HOST_CONFIG:/noaa_config rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
 
 
 
