@@ -1,5 +1,7 @@
 site_file: https://raw.githubusercontent.com/eco4cast/NOAA_GEFS_container/master/example/noaa_download_site_list.csv
 downscale: TRUE
-overwrite: FALSE
 run_parallel: TRUE
+overwrite: FALSE
 num_cores: 4
+forecast_date: all
+forecast_time: all
