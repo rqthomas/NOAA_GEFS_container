@@ -46,7 +46,3 @@ to build the container and start the CRON job to generate data every 6 hrs.
 
 	`docker run -v DIRECTORY_HOST_SHARED:/noaa/data -v DIRECTORY_HOST_CONFIG:/noaa/config rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
 
-
-
-
-
