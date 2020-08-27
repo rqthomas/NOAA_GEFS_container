@@ -42,37 +42,3 @@ to build the container and start the CRON job to generate data every 6 hrs.
   machine and `DIRECTORY_HOST_CONFIG` with your configuration directory
 
 	`docker run -v DIRECTORY_HOST_SHARED:/noaa/data -v DIRECTORY_HOST_CONFIG:/noaa/config rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
-
-
-
-### To run in R (not using container)
-
-Some set up since it isn't a package yet
-
-`library(tidyverse)`
-`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/write_noaa_gefs_netcdf.R")`
-`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/temporal_downscaling.R")`
-`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/download_downscale_site.R")`
-`source("/Users/quinn/Dropbox/Research/EFI_RCN/NOAA_GEFS_download/NOAA_GEFS_container/R/noaa_gefs_download_downscale.R")`
-
-Set output directory
- 
-`output_directory <- "/Users/quinn/Downloads/GEFS_test"`
-
-Read list of latitude and longitudes
-
-`sites <- readr::read_csv(site_file, col_types = cols())`
-
-Download and temporally downscale forecasts
-
-`noaa_gefs_download_downscale(site_list = sites$site_id,
-                             lat_list = sites$latitude,
-                             lon_list = sites$longitude,
-                             output_directory,
-                             downscale = TRUE,
-                             run_parallel = TRUE,
-                             num_cores = 4, 
-                             overwrite = config_file$overwrite)`
-
-
-
