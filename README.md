@@ -1,6 +1,22 @@
 ## NOAA GEFS downloading and temporally (6 hr to 1 hr) downscaling container
 
+
 This container runs the R package `noaaGEFSpoint` (`https://github.com/rqthomas/noaaGEFSpoint``)  
+
+## Quickstart
+
+Set the OUTDIR to your preferred output location in the `Makefile`.
+Run: 
+
+```bash
+make
+```
+
+to build the container and start the CRON job to generate data every 6 hrs.  
+
+**Configuration**: 
+- edit `hello-cron` to adjust the cron timing.
+- edit the site configuration in the `example` directory as described below.
 
 ### To run the container
 

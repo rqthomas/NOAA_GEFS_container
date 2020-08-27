@@ -1,0 +1,3 @@
+## Run every six hours: (https://crontab.guru/#0_*/6_*_*_*)
+0 */6 * * * /usr/local/bin/Rscript /noaa/launch_download_downscale.R
+
