@@ -23,7 +23,7 @@ COPY run_noaa_download_downscale.sh /run_noaa_download_downscale.sh
 
 # Get flare-container.sh
 RUN R -e "install.packages('/noaa/R/rNOMADS_2.5.0.tar.gz', repos = NULL)"
-RUN R -e "devtools::install_github("rqthomas/noaaGEFSpoint")"
+RUN R -e "devtools::install_github('rqthomas/noaaGEFSpoint')"
 	
 #create directory where output directory will be created	
 RUN mkdir -p /noaa/data
