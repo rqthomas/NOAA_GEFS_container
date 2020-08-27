@@ -4,7 +4,7 @@
 
 .PHONY: example
 HERE=$(shell pwd)
-OUTDIR=/zpool/minio/NOAA_GEFS
+OUTDIR=${OUTDIR:=$HERE}
 
 example:
 	docker build -t rqthomas/noaa_gefs_download_downscale . 
