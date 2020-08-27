@@ -1,5 +1,20 @@
 ## NOAA GEFS downloading and temporally (6 hr to 1 hr) downscaling container
 
+## Quickstart
+
+Set the OUTDIR to your preferred output location in the `Makefile`.
+Run: 
+
+```bash
+make
+```
+
+to build the container and start the CRON job to generate data every 6 hrs.  
+
+**Configuration**: 
+- edit `hello-cron` to adjust the cron timing.
+- edit the site configuration in the `example` directory as described below.
+
 ### To run the container
 
 - Pull the container from DockerHub
@@ -27,6 +42,8 @@
   machine and `DIRECTORY_HOST_CONFIG` with your configuration directory
 
 	`docker run -v DIRECTORY_HOST_SHARED:/noaa/data -v DIRECTORY_HOST_CONFIG:/noaa/config rqthomas/noaa_gefs_download_downscale bash /run_noaa_download_downscale.sh`
+
+
 
 ### To run in R (not using container)
 
