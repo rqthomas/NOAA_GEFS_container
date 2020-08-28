@@ -22,7 +22,7 @@ to build the container and start the CRON job to generate data every 6 hrs.
 
 - Pull the container from DockerHub
 
-	`docker pull rqthomas/noaa_gefs_download_downscale:latest`
+ `docker pull rqthomas/noaa_gefs_download_downscale:latest`
 
 - Create a directory where you want the output saved
 
@@ -48,5 +48,5 @@ to build the container and start the CRON job to generate data every 6 hrs.
 - Run the following, replacing `DIRECTORY_HOST_SHARED` with the output directory on your 
   machine and `DIRECTORY_HOST_CONFIG` with your configuration directory
 
-	`docker run -v DIRECTORY_HOST_SHARED:/noaa/data -v DIRECTORY_HOST_CONFIG:/noaa/config -d rqthomas/noaa_gefs_download_downscale'
+	`docker run -v DIRECTORY_HOST_SHARED:/noaa/data -v DIRECTORY_HOST_CONFIG:/noaa/config -d rqthomas/noaa_gefs_download_downscale`
 
