@@ -6,7 +6,7 @@ RUN apt-get update && \
 	cron \
 	libudunits2-dev \
 	libnetcdf-dev \
-	netcdf-bin \
+	netcdf-bin && \
 	R -e "install.packages(c('RCurl', 'ncdf4', 'udunits2','yaml'))"
 	
 RUN mkdir -p /noaa/R
