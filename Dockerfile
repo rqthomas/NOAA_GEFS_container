@@ -7,7 +7,7 @@ RUN apt-get update && \
 	libudunits2-dev \
 	libnetcdf-dev \
 	netcdf-bin && \
-	R -e "install.packages(c('RCurl', 'ncdf4', 'udunits2','yaml'))"
+	R -e "install.packages(c('RCurl', 'ncdf4', 'udunits2','yaml','fields','GEOmap','MBA','XML','uuid'))"
 	
 RUN mkdir -p /noaa/R
 
@@ -22,6 +22,7 @@ RUN chmod 0644 /etc/cron.d/hello-cron && \
 # Get flare-container.sh
 RUN R -e "install.packages('/noaa/R/rNOMADS_2.5.0.tar.gz', repos = NULL)"
 RUN R -e "devtools::install_github('rqthomas/noaaGEFSpoint')"
+
 	
 #create directory where output directory will be created	
 RUN mkdir -p /noaa/data
