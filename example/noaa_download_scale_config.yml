@@ -3,5 +3,5 @@ downscale: TRUE
 run_parallel: TRUE
 overwrite: FALSE
 num_cores: 4
-forecast_date: all
-forecast_time: all
+forecast_date: latest
+forecast_time: latest
