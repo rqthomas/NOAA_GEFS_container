@@ -13,8 +13,6 @@ configuration_yaml <- "/noaa/config/noaa_download_scale_config.yml"
 #Read configuration file
 config_file <- yaml::read_yaml(configuration_yaml)
 
-print(config_file)
-
 #Read list of latitude and longitudes
 neon_sites <- readr::read_csv(config_file$site_file)
 site_list <- neon_sites$site_id
