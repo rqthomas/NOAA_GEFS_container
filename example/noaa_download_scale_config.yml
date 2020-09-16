@@ -1,7 +1,7 @@
-site_file: https://raw.githubusercontent.com/eco4cast/NOAA_GEFS_container/master/example/noaa_download_site_list.csv
+site_file: /Users/quinn/Dropbox (VTFRS)/Research/EFI_RCN/NOAA_GEFS_container/example/noaa_download_site_list_test.csv
 downscale: TRUE
 run_parallel: TRUE
 overwrite: FALSE
-num_cores: 4
-forecast_date: latest
-forecast_time: latest
+num_cores: 2
+forecast_date: all
+forecast_time: all
